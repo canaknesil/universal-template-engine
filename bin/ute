@@ -1,0 +1,66 @@
+#! /bin/bash
+
+#
+# GET COMMAND LINE ARGUMENTS
+#
+
+if (( $# != 3 )); then
+    echo "Illegal numner of arguments !"
+    exit 1
+fi
+
+LANG=$1
+TEMPLATE=$2
+TARGET=$3
+
+if [ "$TEMPLATE" == "$TARGET" ]; then
+    echo "Template file is the same with target file !"
+    exit 1
+fi
+
+#
+# DEFINE INTERNAL VARIABLES
+#
+
+BIN_DIR=$(dirname $BASH_SOURCE)
+UTE_GEN_SCRIPT=$BIN_DIR/ute-gen-script
+
+LANG_SUPPORT_DIR=$BIN_DIR/../language-support/$LANG
+BASE=$(find $LANG_SUPPORT_DIR -name 'base.*')
+LANG_EXTENSION="${BASE##*.}"
+SCRIPT_EXE=$LANG_SUPPORT_DIR/run-script-file.sh
+
+SCRIPT_PRINT_PRE=$(cat $LANG_SUPPORT_DIR/script-print-pre)
+SCRIPT_PRINT_POST=$(cat $LANG_SUPPORT_DIR/script-print-post)
+SCRIPT_HEX_PRINT_PRE=$(cat $LANG_SUPPORT_DIR/script-hex-print-pre)
+SCRIPT_HEX_PRINT_POST=$(cat $LANG_SUPPORT_DIR/script-hex-print-post)
+
+#
+# template -> script
+#
+
+if ! (cat $BASE && $UTE_GEN_SCRIPT $SCRIPT_PRINT_PRE $SCRIPT_PRINT_POST $SCRIPT_HEX_PRINT_PRE $SCRIPT_HEX_PRINT_POST < $TEMPLATE) > $TEMPLATE.$LANG_EXTENSION
+then
+    echo
+    echo "Error while script generation !"
+    rm $TEMPLATE.$LANG_EXTENSION
+    exit 1
+fi
+
+#
+# script -> target document
+#
+
+sh $SCRIPT_EXE $TEMPLATE.$LANG_EXTENSION | tee $TARGET
+if ! $(exit ${PIPESTATUS[0]})
+   then
+    echo
+    echo "Error while running generated script !"
+    rm $TEMPLATE.$LANG_EXTENSION $TARGET
+    exit 2
+fi
+
+rm $TEMPLATE.$LANG_EXTENSION
+exit
+
+
