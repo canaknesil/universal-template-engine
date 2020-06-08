@@ -13,17 +13,24 @@ programming language.
 * Very easy to add support for a new language.
 * Syntax is similar to [Django template language](https://www.djangoproject.com/).
 
-## Example
+## Example (Creating logarithm table in HTML)
 
 HTML template using Julia programming language:
 
 ``` html
-{% title = "This is the title" %}
 ...
-<head>
-  <title> {{ title }} </title>
-  ...
-</head>
+    <table style="width:20%">
+      <tr align="left">
+        <th>N</th>
+        <th>log<sub>2</sub>N</th> 
+      </tr>
+      {% for n in 1:5 %}
+      <tr>
+        <td>{{ n }}</td>
+        <td>{{ log2(n) }}</td>
+      </tr>
+      {% end %}
+    </table>
 ...
 ```
 
@@ -31,10 +38,32 @@ Target HTML document:
 
 ``` html
 ...
-<head>
-  <title> This is the title </title>
-  ...
-</head>
+    <table style="width:20%">
+      <tr align="left">
+        <th>N</th>
+        <th>log<sub>2</sub>N</th> 
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0.0</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1.0</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>1.584962500721156</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>2.321928094887362</td>
+      </tr>
+    </table>
 ...
 ```
 
