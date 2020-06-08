@@ -5,7 +5,7 @@ directory.
 
 To add support for a new language, all that needs to be
 done is to create a new directory, named by the new language,
-under `language-support`, and put the following files in it:
+under `language-support`, and put the following files in it (all the files must exist even if they are empty):
 
 * **run-script-file.sh**: Contains the command to run a script file
   with the new language. It should take only one argument that is the
