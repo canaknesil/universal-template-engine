@@ -1,6 +1,4 @@
-# Universal Template Engine
-
-Note: Still in development.
+# Universal Template Engine (UTE)
 
 Template engine to create every kind of text document using one of
 supported programming languages.
@@ -12,6 +10,8 @@ programming language.
 * Templates can use full power of the selected scripting language.
 * Very easy to add support for a new language.
 * Syntax is similar to [Django template language](https://www.djangoproject.com/).
+
+Supported scripting languages: Julia.
 
 ## Example (Creating logarithm table in HTML)
 
@@ -67,6 +67,40 @@ Target HTML document:
 ...
 ```
 
+## Build
+
+Run `make` in the project directory. Only dependencies are C compiler and
+Bash.
+
+For developers,
+[Flex](https://en.wikipedia.org/wiki/Flex_(lexical_analyser_generator))
+lexical analyzer generator is also needed. 
+
+## Usage
+
+### Invocation
+
+UTE is invoked with `bin/ute` executable as such:  
+`ute <scripting-language-name> <input-template-file> <output-target-file>`
+
+For example:
+
+```
+ute julia log-table.t.html log-table.html
+```
+
+`<scripting-language-name>` should be one of the directory names under
+`language-support`.
+
+### Template syntax
+
+The template file can include 2 kinds of script blocks with special
+syntax: `{% ... %}` and `{{ ... }}`.
+
+The template engine runs the scripts inside these blocks. Right after
+execution,`{% ... %}` is removed, and `{{ ... }}` is substituted by
+the printout of the evaluated value.
+
 ## How does it work?
 
 Lets say the target document type is HTML, and selected scripting
@@ -80,7 +114,15 @@ The whole HTML template is translated into Julia code:
 
 The generated Julia code is run to generate the target HTML document. 
 
+## How to add support for new languages?
 
+Read [LANGUAGE_SUPPORT.md](LANGUAGE_SUPPORT.md).
+
+## License
+
+Copyright&copy; 2020 Can Aknesil
+
+This project is licensed under GNU General Public License v3.0.
 
 
 
