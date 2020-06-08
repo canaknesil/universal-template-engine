@@ -10,9 +10,7 @@ under `language-support`, and put the following files in it:
 * **run-script-file.sh**: Contains the command to run a script file
   with the new language. It should take only one argument that is the
   script file name. 
-* **script-print-pre** and **script-print-post**: 
-
-Parts of the script written in the new language, which is used to run a script block
+* **script-print-pre** and **script-print-post**: Parts of the script written in the new language, which is used to run a script block
 and print the result to standard output. 
 
 For Julia language, the following script does the job:
