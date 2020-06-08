@@ -41,6 +41,8 @@ print_hex_string("3c68746d6c3e")
 In this case, script-hex-print-pre should contain
 `print_hex_string("`, script-hex-print-post should contain `")`. 
 
+When this particular example is executed, `<html>` is printed.
+
 * **base.X**, where X is the file extension for the new language:
   Contains code required by script-[hex]-print-{pre,post}.
   
