@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Logarithm Table (Base 2)</h1>
+    <table style="width:20%">
+      <tr align="left">
+	<th>N</th>
+	<th>log<sub>2</sub>N</th> 
+      </tr>
+      {% for n in 1:10 %}
+      <tr>
+	<td>{{ n }}</td>
+	<td>{{ log2(n) }}</td>
+      </tr>
+      {% end %}
+    </table>
+  </body>
+</html> 
