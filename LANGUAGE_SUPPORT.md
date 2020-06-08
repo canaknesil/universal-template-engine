@@ -29,7 +29,7 @@ script-print-post should contain ` end)`. (Be careful about the spaces)
 * **script-hex-print-pre** and **script-hex-post**:
 
 Parts of the script written in the new language, which is used to
-print a string represented with a string of 2 digis hexadecimal
+print a string represented with a string of 2-digit hexadecimal
 numbers. 
 
 For Julia language:
