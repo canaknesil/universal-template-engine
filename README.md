@@ -103,8 +103,8 @@ the printout of the evaluated value.
 
 ## How does it work?
 
-Lets say the target document type is HTML, and selected scripting
-language is Julia.
+Let the target document type be HTML, and selected scripting
+language be Julia.
 
 The whole HTML template is translated into Julia code:
 * HTML sections are wrapped by Julia print functions.
