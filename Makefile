@@ -1,7 +1,7 @@
 TARGET := bin/ute-gen-script
 LEX := flex
 CC := gcc
-LDFLAGS := -ll
+LDFLAGS := -lfl
 
 LEX_FILE := scanner/gen-script.lex
 LEX_OUT := scanner/lex.yy.c
